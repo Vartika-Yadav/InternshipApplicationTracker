@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All Internship Applications</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4 text-center">
+  <a th:href="@{/addApplication}" class="btn btn-success mb-3">Add Application</a>
+  <h2>Internship Applications</h2>
+
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+    <tr>
+      <th>Student Name</th>
+      <th>Company</th>
+      <th>Role</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="application : ${applications}">
+      <td th:text="${application.studentName}">Student Name</td>
+      <td th:text="${application.company}">Company</td>
+      <td th:text="${application.role}">Role</td>
+      <td th:text="${application.status}">Status</td>
+      <td>
+        <a th:href="@{/showFormUpdate/{id}(id=${application.id})}" class="btn btn-primary btn-sm">Update</a>
+        <a th:href="@{/deleteApplication/{id}(id=${application.id})}"
+           onclick="return confirm('Are you sure you want to delete this application?')"
+           class="btn btn-danger btn-sm">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
